@@ -40,9 +40,9 @@ if beamcond in ['I','i']:
         gsm[j*2:j*2+4,j*2:j*2+4]+=elesm
 if beamcond in ['D','d']:
     for k in range(Elements):
-        b = float(input("Enter width of cross-section in m or in mm for element %d : "%(k+1)))
-        h = float(input("Enter height of cross-section in m or in mm for element %d : "%(k+1)))
-        e = float(input("Enter Young's modulus in kN/m^2 or in MPa for element %d : "%(k+1)))
+        b = float(input("Enter width of cross-section in m for element %d : "%(k+1)))
+        h = float(input("Enter height of cross-section in m for element %d : "%(k+1)))
+        e = float(input("Enter Young's modulus in kN/m^2 for element %d : "%(k+1)))
         i = (b*(h**3))/12
         l = float(input("Enter length of element %d : " % (k+1)))
         le.append(l)
@@ -75,12 +75,12 @@ for n in range(nol):
     loadtype=input("Enter type of load acting : ")
     if loadtype in ['p','P']:
         nn=int(input("Enter node number on which point load is acting: "))
-        val=float(input("Enter load value : " ))
+        val=float(input("Enter load value kN : " ))
         F[2*nn-2,0]+=val
     if loadtype in ['udl','Udl','UDL']:
         snn=int(input("Enter start node number for udl : "))
         enn=int(input("Enter end node number for udl : "))
-        val=float(input("Enter load intensity : " ))
+        val=float(input("Enter load intensity in kN/m : " ))
         f=(val*le[snn-1])/2
         m=(val*(le[snn-1])**2)/12
         F[2*snn-2,0]+=f
@@ -90,7 +90,7 @@ for n in range(nol):
     if loadtype in ['Uvl','uvl','UVL']:
         snn=int(input("Enter start node number for uvl : "))
         enn=int(input("Enter end node number for uvl : "))
-        val=float(input("Enter maximum load intensity for uvl : "))
+        val=float(input("Enter maximum load intensity for uvl in kN/m : "))
         f=(3*val*le[snn-1])/20
         f1=(7*val*le[snn-1])/20 
         m=(val*(le[snn-1])**2)/30
